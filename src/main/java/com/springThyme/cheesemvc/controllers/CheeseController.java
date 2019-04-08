@@ -6,16 +6,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping(value = "cheese")
 public class CheeseController {
 
-    private static ArrayList<String> cheeses= new ArrayList<String>();
-    static {
-        cheeses.add("Cheddar");
-    }
+    private static HashMap<String, String> cheeses= new HashMap<>();
+//    static {
+//        cheeses.add("Cheddar");
+//    }
+
     //do not use @ResponseBody annotation with templates
     // Request path: /cheese
     @RequestMapping(value = "")
@@ -34,11 +35,16 @@ public class CheeseController {
 
 //    add handler to handle submission of form
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public static String processAddCheeseForm(@RequestParam String cheese){
-        if(cheese.equals("")){
+    public static String processAddCheeseForm(
+            @RequestParam String cheese,
+            @RequestParam String description){
+
+        if(cheese.equals("") || description.equals("")){
             return "cheese/add";
         }
-        cheeses.add(cheese);
+
+        cheeses.put(cheese, description);
+
         // Redirect to /cheese (Redirect is relative to the request mapping of controller)
         return "redirect:";
     }
