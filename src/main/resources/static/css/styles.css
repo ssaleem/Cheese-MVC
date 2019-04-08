@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+}
+
+nav {
+    width: 50%;
+    margin: 10px auto;
+}
+h1 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 8px;
+}
+input {
+    border: none;
+    border-bottom: 1px solid #80808063;
+    margin: 0 3px;
+}
+
+input[type="submit"] {
+    background-color: white;
+    border: 1px solid #80808063;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+form {
+    border: thin solid #80808063;
+    margin: 0 auto;
+    padding: 10px;
+    width: 50%;
+    border-radius: 4px;
+}
