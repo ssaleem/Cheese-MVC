@@ -1,5 +1,6 @@
 package com.springThyme.cheesemvc.controllers;
 
+import com.springThyme.cheesemvc.models.Cheese;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 @RequestMapping(value = "cheese")
 public class CheeseController {
 
-    private static HashMap<String, String> cheeses= new HashMap<>();
+    private static ArrayList<Cheese> cheeses = new ArrayList<>();
 
     //do not use @ResponseBody annotation with templates
     // Request path: /cheese
@@ -52,7 +53,7 @@ public class CheeseController {
         }
 
 
-        cheeses.put(cheese, description);
+        cheeses.add(new Cheese(cheese, description));
 
         // Redirect to /cheese (Redirect is relative to the request mapping of controller)
         return "redirect:";
@@ -61,7 +62,7 @@ public class CheeseController {
     @RequestMapping(value = "remove")
     public String displayRemoveCheeseForm(Model model){
 
-        model.addAttribute("cheeseList", cheeses.keySet());
+        model.addAttribute("cheeseList", cheeses);
         return "/cheese/remove";
 
     }
@@ -71,7 +72,7 @@ public class CheeseController {
             @RequestParam(required = false) String cheeseSelection){
 
         if(!cheeseSelection.equals("")){
-            cheeses.remove(cheeseSelection);
+            cheeses.remove(this.findMatch(cheeseSelection));
         }
 
         return "redirect:";
@@ -85,22 +86,28 @@ public class CheeseController {
 
     }
 
-//    to protect from error caused by absence of a parameter, do 2 things
-//    1. make required = false in annotation
-//    2. check for null within method
+
     @RequestMapping(value = "removeMultiple", method = RequestMethod.POST)
     public String processRemoveMultipleCheeseForm(
             @RequestParam(required = false) ArrayList<String> cheese){
 
         if(cheese != null){
             for(String cheeseName: cheese){
-                cheeses.remove(cheeseName);
+                cheeses.remove(this.findMatch(cheeseName));
             }
         }
 
         return "redirect:";
     }
 
-
+    private static int findMatch(String cheeseName){
+        int match = -1;
+        for(int i = 0; i < cheeses.size(); i++){
+            if(cheeses.get(i).getName().equals(cheeseName)){
+                match = i;
+            }
+        }
+        return match;
+    }
 
 }

@@ -7,14 +7,14 @@
 <nav th:replace="fragments :: navigation"></nav>
 <form method="post">
     <label
-        th:each="cheese: ${cheeses.keySet()}">
+        th:each="cheese: ${cheeses}">
         <input
             type="checkbox"
             th:name="cheese"
-            th:value="${cheese}"
+            th:value="${cheese.getName()}"
 
         />
-        <span th:text="${cheese}"></span>
+        <span th:text="${cheese.getName()}"></span>
     </label>
     <input type="submit" value="Remove Cheese/s"/>
 </form>
