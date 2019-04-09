@@ -5,8 +5,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import utils.CheeseNameValidator;
 
 import java.util.HashMap;
+
 
 @Controller
 @RequestMapping(value = "cheese")
@@ -28,7 +30,13 @@ public class CheeseController {
 
 //    add handler to show form
     @RequestMapping(value="add")
-    public String displayAddCheeseForm(Model model){
+    public String displayAddCheeseForm(Model model,
+    @RequestParam(required = false) String error){
+
+        if(error != null){
+            model.addAttribute("error", true);
+        }
+
         model.addAttribute("title", "Add Cheese");
         return "cheese/add";
     }
@@ -39,9 +47,11 @@ public class CheeseController {
             @RequestParam String cheese,
             @RequestParam String description){
 
-        if(cheese.equals("") || description.equals("")){
-            return "cheese/add";
+        if(cheese.equals("") || description.equals("") || CheeseNameValidator.isInValid(cheese)){
+//            use redirect to send query parameters, simple return will not work
+            return "redirect:add?error=true";
         }
+
 
         cheeses.put(cheese, description);
 

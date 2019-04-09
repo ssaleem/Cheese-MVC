@@ -14,5 +14,6 @@
         <input type="submit" value="Add Cheese"/>
     </form>
 
+    <p th:text="${error} ? 'Please enter a valid cheese name' : ''"></p>
 </body>
 </html>
