@@ -9,7 +9,7 @@ nav {
 }
 
 nav a{
-    width: calc(100% / 4);
+    width: calc(100% / 5);
     text-align: center;
 }
 
@@ -30,7 +30,7 @@ form {
     border-radius: 4px;
 }
 
-.list {
+.list, .user {
     margin: 0 auto;
     width: 50%;
 }
@@ -39,3 +39,6 @@ form {
     text-align: center;
     color: red;
 }
+
+
+

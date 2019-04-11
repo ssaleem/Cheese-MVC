@@ -25,11 +25,6 @@ public class CheeseManager {
         return cheeses.get(ID);
     }
 
-//    public static void create(String name, String description ){
-//        Cheese obj = new Cheese(name, description);
-//        add(obj);
-//    }
-
     public static void add(Cheese cheese){
         cheeses.put(cheese.getID(), cheese);
     }
