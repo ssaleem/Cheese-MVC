@@ -4,6 +4,7 @@ import com.springThyme.cheesemvc.models.Cheese;
 import com.springThyme.cheesemvc.models.data.CheeseManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,15 +43,14 @@ public class CheeseController {
 //    add handler to handle submission of form
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public static String processAddCheeseForm(
-            @RequestParam String cheese,
-            @RequestParam String description){
+            @ModelAttribute Cheese newCheese){
 
-        if(cheese.equals("") || description.equals("") || CheeseNameValidator.isInValid(cheese)){
-            // use redirect to send query parameters, simple return will not work
-            return "redirect:add?error=true";
-        }
+//        if(cheese.equals("") || description.equals("") || CheeseNameValidator.isInValid(cheese)){
+//            // use redirect to send query parameters, simple return will not work
+//            return "redirect:add?error=true";
+//        }
 
-        CheeseManager.create(cheese, description);
+        CheeseManager.add(newCheese);
 
         // Redirect to /cheese (Redirect is relative to the request mapping of controller)
         return "redirect:";

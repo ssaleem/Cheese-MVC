@@ -1,5 +1,7 @@
 package com.springThyme.cheesemvc.models;
 
+import utils.CheeseNameValidator;
+
 import java.util.Objects;
 
 public class Cheese {
@@ -36,4 +38,11 @@ public class Cheese {
         return description;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
