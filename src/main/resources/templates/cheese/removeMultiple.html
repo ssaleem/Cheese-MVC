@@ -10,8 +10,8 @@
         th:each="cheese: ${cheeses}">
         <input
             type="checkbox"
-            th:name="cheese"
-            th:value="${cheese.getName()}"
+            th:name="cheeseSelection"
+            th:value="${cheese.getID()}"
 
         />
         <span th:text="${cheese.getName()}"></span>
