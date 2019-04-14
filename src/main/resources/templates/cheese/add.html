@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head th:replace="fragments :: head"></head>
-<body>
+<body class="container bg">
     <h1>Add Cheese</h1>
     <nav th:replace="fragments :: navigation"></nav>
     <form method="post">
@@ -11,7 +11,7 @@
         <label>Cheese Description
             <input type="text" name="description" class="form-control"/>
         </label>
-        <input type="submit" class="btn btn-primary" value="Add Cheese"/>
+        <input type="submit" class="btn btn-dark" value="Add Cheese"/>
     </form>
 
     <p th:text="${error} ? 'Please enter a valid cheese name' : ''" class="error"></p>

@@ -2,7 +2,6 @@ package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.User;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
-    <h1 th:text="${title}">Default Title</h1>
+<body class="container bg">
+    <h1 th:text="${title}" class="display-4">Default Title</h1>
     <nav th:replace="fragments :: navigation"></nav>
 
     <ul class="list-group list">
@@ -12,8 +12,8 @@
         >
             <h3 th:text="${cheese.name}"></h3>
             <p th:text="${cheese.description}"></p>
+            <a th:href="@{'/cheese/edit/' + ${cheese.ID}}">Edit</a>
         </li>
     </ul>
-
 </body>
 </html>

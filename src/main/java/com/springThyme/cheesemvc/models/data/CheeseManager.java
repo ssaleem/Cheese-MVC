@@ -4,7 +4,6 @@ import com.springThyme.cheesemvc.models.Cheese;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 
 public class CheeseManager {
@@ -17,11 +16,11 @@ public class CheeseManager {
 //    U, individual
 //    D, individual, all
 
-    public static Collection<Cheese> getCheeses(){
+    public static Collection<Cheese> getAll(){
         return cheeses.values();
     }
 
-    public static Cheese getCheese(int ID) {
+    public static Cheese getById(int ID) {
         return cheeses.get(ID);
     }
 
@@ -29,11 +28,17 @@ public class CheeseManager {
         cheeses.put(cheese.getID(), cheese);
     }
 
+    public static void update(int ID, String name, String description){
+        Cheese cheese = getById(ID);
+        cheese.setName(name);
+        cheese.setDescription(description);
+    }
+
     public static void removeCheese(int ID) {
         cheeses.remove(ID);
     }
 
-    public static void removeCheeses(ArrayList<Integer> IDs) {
+    public static void removeCheeses(int[] IDs) {
         for(int id: IDs){
             removeCheese(id);
         }

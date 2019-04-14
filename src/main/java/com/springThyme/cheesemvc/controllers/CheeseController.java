@@ -4,14 +4,10 @@ import com.springThyme.cheesemvc.models.Cheese;
 import com.springThyme.cheesemvc.models.data.CheeseManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import utils.CheeseNameValidator;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import javax.validation.Valid;
 
 
 @Controller
@@ -23,7 +19,7 @@ public class CheeseController {
     public String index(Model model){
 
         model.addAttribute("title", "My Cheeses");
-        model.addAttribute("cheeses", CheeseManager.getCheeses());
+        model.addAttribute("cheeses", CheeseManager.getAll());
         return "cheese/index";
     }
 
@@ -43,7 +39,8 @@ public class CheeseController {
 //    add handler to handle submission of form
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public static String processAddCheeseForm(
-            @ModelAttribute Cheese newCheese){
+            @ModelAttribute @Valid Cheese newCheese,
+            Errors errors){
 
 //        if(cheese.equals("") || description.equals("") || CheeseNameValidator.isInValid(cheese)){
 //            // use redirect to send query parameters, simple return will not work
@@ -59,7 +56,7 @@ public class CheeseController {
     @RequestMapping(value = "remove")
     public String displayRemoveCheeseForm(Model model){
 
-        model.addAttribute("cheeseList", CheeseManager.getCheeses());
+        model.addAttribute("cheeseList", CheeseManager.getAll());
         return "/cheese/remove";
 
     }
@@ -69,14 +66,13 @@ public class CheeseController {
             @RequestParam(required = false) int cheeseSelection){
 
         CheeseManager.removeCheese(cheeseSelection);
-
         return "redirect:";
     }
 
     @RequestMapping(value = "removeMultiple")
     public String displayRemoveMultipleCheeseForm(Model model){
 
-        model.addAttribute("cheeses", CheeseManager.getCheeses());
+        model.addAttribute("cheeses", CheeseManager.getAll());
         return "/cheese/removeMultiple";
 
     }
@@ -84,12 +80,25 @@ public class CheeseController {
 
     @RequestMapping(value = "removeMultiple", method = RequestMethod.POST)
     public String processRemoveMultipleCheeseForm(
-            @RequestParam(required = false) ArrayList<Integer> cheeseSelection){
+            @RequestParam(required = false) int[] cheeseSelection){
 
         if(cheeseSelection != null){
             CheeseManager.removeCheeses(cheeseSelection);
         }
 
+        return "redirect:";
+    }
+
+    @RequestMapping(value = "edit/{cheeseId}")
+    public String displayEditForm(Model model, @PathVariable int cheeseId){
+        System.out.println("here");
+        model.addAttribute("cheese", CheeseManager.getById(cheeseId));
+        return "cheese/edit";
+    }
+
+    @RequestMapping(value = "edit", method = RequestMethod.POST)
+    public String processEditForm(int ID, String name, String description){
+        CheeseManager.update(ID, name, description);
         return "redirect:";
     }
 

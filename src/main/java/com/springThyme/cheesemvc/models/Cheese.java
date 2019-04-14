@@ -1,14 +1,18 @@
 package com.springThyme.cheesemvc.models;
 
-import utils.CheeseNameValidator;
-
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class Cheese {
 
     private static int nextID = 0;
     private int ID;
+
+    @NotNull
+    @Size(min = 3, max = 15)
     private String name;
+
+    @NotNull
     private String description;
 
     public Cheese() {
