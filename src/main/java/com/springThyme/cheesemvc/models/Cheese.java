@@ -9,11 +9,15 @@ public class Cheese {
     private int ID;
 
     @NotNull
-    @Size(min = 3, max = 15)
+    @Size(min = 3, max = 15, message = "Cheese name must be between 3 and 15 characters")
     private String name;
 
     @NotNull
+    @Size(min= 1, message = "Description must not be empty")
     private String description;
+
+    private CheeseType type;
+
 
     public Cheese() {
         this.ID = ++nextID;
@@ -24,6 +28,7 @@ public class Cheese {
         this.name = name;
         this.description = description;
     }
+
 
     @Override
     public String toString() {
@@ -48,5 +53,13 @@ public class Cheese {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public CheeseType getType() {
+        return type;
+    }
+
+    public void setType(CheeseType type) {
+        this.type = type;
     }
 }

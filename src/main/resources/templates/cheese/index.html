@@ -12,6 +12,7 @@
         >
             <h3 th:text="${cheese.name}"></h3>
             <p th:text="${cheese.description}"></p>
+            <p th:text="${cheese.type.name}"></p>
             <a th:href="@{'/cheese/edit/' + ${cheese.ID}}">Edit</a>
         </li>
     </ul>

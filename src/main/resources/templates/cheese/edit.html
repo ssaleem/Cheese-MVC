@@ -8,9 +8,11 @@
     <form method="post" th:object="${cheese}" action="/cheese/edit">
         <label>Cheese Name
             <input type="text" th:field="*{name}" class="form-control"/>
+            <span th:errors="*{name}" class="error"></span>
         </label>
         <label>Cheese Description
             <input type="text" th:field="*{description}" class="form-control"/>
+            <span th:errors="*{description}" class="error"></span>
         </label>
         <input type="hidden" th:field="*{ID}" />
         <input type="submit" class="btn btn-primary" value="Edit Cheese"/>

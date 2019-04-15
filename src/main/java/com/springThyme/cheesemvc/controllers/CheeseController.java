@@ -1,6 +1,7 @@
 package com.springThyme.cheesemvc.controllers;
 
 import com.springThyme.cheesemvc.models.Cheese;
+import com.springThyme.cheesemvc.models.CheeseType;
 import com.springThyme.cheesemvc.models.data.CheeseManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,29 +24,24 @@ public class CheeseController {
         return "cheese/index";
     }
 
-//    add handler to show form
     @RequestMapping(value="add")
-    public String displayAddCheeseForm(Model model,
-    @RequestParam(required = false) String error){
-
-        if(error != null){
-            model.addAttribute("error", true);
-        }
+    public String displayAddCheeseForm(Model model){
 
         model.addAttribute("title", "Add Cheese");
+//        following line add an attribute with the key of `cheese' to the model
+        model.addAttribute(new Cheese());
+        model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/add";
     }
 
-//    add handler to handle submission of form
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public static String processAddCheeseForm(
             @ModelAttribute @Valid Cheese newCheese,
             Errors errors){
 
-//        if(cheese.equals("") || description.equals("") || CheeseNameValidator.isInValid(cheese)){
-//            // use redirect to send query parameters, simple return will not work
-//            return "redirect:add?error=true";
-//        }
+        if(errors.hasErrors()){
+            return "cheese/add";
+        }
 
         CheeseManager.add(newCheese);
 
@@ -91,7 +87,6 @@ public class CheeseController {
 
     @RequestMapping(value = "edit/{cheeseId}")
     public String displayEditForm(Model model, @PathVariable int cheeseId){
-        System.out.println("here");
         model.addAttribute("cheese", CheeseManager.getById(cheeseId));
         return "cheese/edit";
     }
