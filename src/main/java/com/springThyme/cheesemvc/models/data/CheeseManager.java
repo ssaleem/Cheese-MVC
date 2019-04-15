@@ -1,9 +1,7 @@
 package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.Cheese;
-import com.springThyme.cheesemvc.models.CheeseType;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 

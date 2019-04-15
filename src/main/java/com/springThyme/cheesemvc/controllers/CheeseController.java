@@ -27,7 +27,6 @@ public class CheeseController {
     @RequestMapping(value="add")
     public String displayAddCheeseForm(Model model){
 
-        model.addAttribute("title", "Add Cheese");
 //        following line add an attribute with the key of `cheese' to the model
         model.addAttribute(new Cheese());
         model.addAttribute("cheeseTypes", CheeseType.values());

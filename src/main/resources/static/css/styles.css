@@ -4,11 +4,6 @@ nav {
     display: flex;
 }
 
-nav a{
-    width: calc(100% / 5);
-    text-align: center;
-}
-
 h1 {
     text-align: center;
 }
@@ -33,7 +28,6 @@ form {
 }
 
 .error{
-    text-align: center;
     color: red;
 }
 
@@ -53,9 +47,6 @@ body, html {
   background-size: cover;
 }
 
-.olive {
-    background-color: #506237;
-}
 
 
 
