@@ -1,5 +1,9 @@
 package com.springThyme.cheesemvc.models;
 
+import org.hibernate.validator.constraints.Email;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
@@ -8,9 +12,17 @@ public class User {
     private static int nextID = 0;
 
     private int ID;
+    @NotNull
+    @Size(min = 5, max = 15, message="Name must be between 5 and 15 characters")
     private String name;
+
+    @Email
     private String email;
+
+    @NotNull
+    @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
+
     private Date joinDate;
 
     public User() {

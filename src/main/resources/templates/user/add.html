@@ -4,22 +4,29 @@
 <body class="container">
     <h1>Add User</h1>
     <nav th:replace="fragments :: navigation"></nav>
-    <form method="post">
-        <label>Name
-            <input type="text" name="name" class="form-control" th:value="${name ?: ''}"/>
-        </label>
-        <label>Email
-            <input type="email" name="email" class="form-control" th:value="${email ?: ''}"/>
-        </label>
-        <label>Password
-            <input type="password" name="password" class="form-control"/>
-        </label>
-        <label>Confirm Password
-            <input type="password" name="verify" class="form-control"/>
-        </label>
-        <input type="submit" class="btn btn-primary" value="Add User"/>
-    </form>
+    <form method="post" th:object="${user}">
+        <div class="form-group">
+            <label th:for="name">Name</label>
+            <input type="text" th:field="*{name}" class="form-control"/>
+            <span th:errors="*{name}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="email">Email</label>
+            <input type="email" th:field="*{email}" class="form-control"/>
+            <span th:errors="*{email}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label th:for="passowrd">Password</label>
+            <input type="password" th:field="*{password}" class="form-control"/>
+            <span th:errors="*{password}" class="error"></span>
+        </div>
+        <div class="form-group">
+            <label for="verify">Confirm Password</label>
+            <input type="password" name="verify" id="verify" class="form-control"/>
+            <span th:text="${error} ?: ''" class="error"></span>
+        </div>
 
-    <p th:text="${error}" class="error"></p>
+        <input type="submit" class="btn btn-dark" value="Add User"/>
+    </form>
 </body>
 </html>
