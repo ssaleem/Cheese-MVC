@@ -88,12 +88,13 @@ public class CheeseController {
     @RequestMapping(value = "edit/{cheeseId}")
     public String displayEditForm(Model model, @PathVariable int cheeseId){
         model.addAttribute("cheese", CheeseManager.getById(cheeseId));
+        model.addAttribute("cheeseTypes", CheeseType.values());
         return "cheese/edit";
     }
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
-    public String processEditForm(int ID, String name, String description){
-        CheeseManager.update(ID, name, description);
+    public String processEditForm(int ID, String name, String description, CheeseType type){
+        CheeseManager.update(ID, name, description, type);
         return "redirect:";
     }
 

@@ -1,6 +1,7 @@
 package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.Cheese;
+import com.springThyme.cheesemvc.models.CheeseType;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -28,10 +29,11 @@ public class CheeseManager {
         cheeses.put(cheese.getID(), cheese);
     }
 
-    public static void update(int ID, String name, String description){
+    public static void update(int ID, String name, String description, CheeseType type){
         Cheese cheese = getById(ID);
         cheese.setName(name);
         cheese.setDescription(description);
+        cheese.setType(type);
     }
 
     public static void removeCheese(int ID) {
