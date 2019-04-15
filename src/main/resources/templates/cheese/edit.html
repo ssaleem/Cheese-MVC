@@ -24,6 +24,11 @@
                         th:value="${cheeseType}"></option>
             </select>
         </div>
+        <div class="form-group">
+            <label th:for="rating">Rating</label>
+            <input th:field="*{rating}" class="form-control"/>
+            <span th:errors="*{rating}" class="error"></span>
+        </div>
         <input type="hidden" th:field="*{ID}" />
         <input type="submit" class="btn btn-primary" value="Edit Cheese"/>
     </form>

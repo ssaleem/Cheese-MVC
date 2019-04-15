@@ -27,11 +27,12 @@ public class CheeseManager {
         cheeses.put(cheese.getID(), cheese);
     }
 
-    public static void update(int ID, String name, String description, CheeseType type){
+    public static void update(int ID, Cheese theCheese){
         Cheese cheese = getById(ID);
-        cheese.setName(name);
-        cheese.setDescription(description);
-        cheese.setType(type);
+        cheese.setName(theCheese.getName());
+        cheese.setDescription(theCheese.getDescription());
+        cheese.setType(theCheese.getType());
+        cheese.setRating(theCheese.getRating());
     }
 
     public static void removeCheese(int ID) {
