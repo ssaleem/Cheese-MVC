@@ -32,18 +32,9 @@ public class UserController {
     public String processAdd(
             Model model,
             @ModelAttribute @Valid User user,
-            Errors errors,
-            String verify){
+            Errors errors){
 
-        boolean verifyError = false;
-        if(verify == null ||  !user.getPassword().equals(verify)) {
-            user.setPassword("");
-            model.addAttribute("error", "Password does not match");
-            verifyError = true;
-        }
-
-        if(errors.hasErrors() || verifyError){
-//            model.addAttribute(user);
+        if(errors.hasErrors()){
             return "user/add";
         }
 

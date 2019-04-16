@@ -23,6 +23,9 @@ public class User {
     @Size(min = 6, message = "Password must be at least 6 characters long")
     private String password;
 
+    @NotNull(message = "Passwords do not match")
+    private String verifyPassword;
+
     private Date joinDate;
 
     public User() {
@@ -40,6 +43,12 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+        checkPassword();
+    }
+
+    public void setVerifyPassword(String verifyPassword) {
+        this.verifyPassword = verifyPassword;
+        checkPassword();
     }
 
     public String getName() {
@@ -52,6 +61,10 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getVerifyPassword() {
+        return verifyPassword;
     }
 
     public int getID() {
@@ -73,5 +86,11 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    private void checkPassword(){
+        if(password == null || verifyPassword == null || !password.equals(verifyPassword)) {
+            verifyPassword = null;
+        }
     }
 }

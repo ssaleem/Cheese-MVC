@@ -21,9 +21,9 @@
             <span th:errors="*{password}" class="error"></span>
         </div>
         <div class="form-group">
-            <label for="verify">Confirm Password</label>
-            <input type="password" name="verify" id="verify" class="form-control"/>
-            <span th:text="${error} ?: ''" class="error"></span>
+            <label th:for="verifyPassword">Confirm Password</label>
+            <input type="password" th:field="*{verifyPassword}" class="form-control"/>
+            <span th:errors="*{verifyPassword}" class="error"></span>
         </div>
 
         <input type="submit" class="btn btn-dark" value="Add User"/>
