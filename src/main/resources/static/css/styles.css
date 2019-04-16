@@ -34,19 +34,18 @@ form {
 body, html {
   height: 100%;
 }
+
 .bg {
-  /* The image used */
-  background-image: url("/img/cheese.jpg");
-
-  /* Full height */
+  background-image: url("/img/cheeseee.jpg");
   height: 100%;
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+tr, td {
+background-color: white;
+}
 
 
 

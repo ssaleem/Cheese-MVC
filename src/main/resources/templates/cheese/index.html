@@ -5,17 +5,24 @@
     <h1 th:text="${title}" class="display-4">Default Title</h1>
     <nav th:replace="fragments :: navigation"></nav>
 
-    <ul class="list-group list">
-        <li
-            th:each="cheese: ${cheeses}"
-            class="list-group-item"
-        >
-            <h3 th:text="${cheese.name}"></h3>
-            <p th:text="${cheese.description}"></p>
-            <p th:text="${cheese.type.name}"></p>
-            <p th:text="${cheese.rating}"></p>
-            <a th:href="@{'/cheese/edit/' + ${cheese.ID}}">Edit</a>
-        </li>
-    </ul>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Rating</th>
+            <th> </th>
+        </tr>
+        </thead>
+        <tr th:each="cheese : ${cheeses}">
+            <td th:text="${cheese.name}"></td>
+            <td th:text="${cheese.description}"></td>
+            <td th:text="${cheese.type.name}"></td>
+            <td th:text="${cheese.rating}"></td>
+            <td><a th:href="@{'/cheese/edit/' + ${cheese.ID}}">Edit</a></td>
+        </tr>
+
+    </table>
 </body>
 </html>
