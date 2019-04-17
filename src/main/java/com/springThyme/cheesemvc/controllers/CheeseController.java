@@ -91,6 +91,7 @@ public class CheeseController {
 
         model.addAttribute("cheese", CheeseManager.getById(cheeseId));
         model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("id", cheeseId);
         return "cheese/edit";
     }
 
@@ -98,15 +99,16 @@ public class CheeseController {
     public String processEditForm(
             @ModelAttribute @Valid Cheese theCheese,
             Errors errors,
-            @RequestParam int ID,
+            @RequestParam int id,
             Model model){
 
         if(errors.hasErrors()){
             model.addAttribute("cheeseTypes", CheeseType.values());
+            model.addAttribute("id", id);
             return "cheese/edit";
         }
 
-        CheeseManager.update(ID, theCheese);
+        CheeseManager.update(id, theCheese);
 
         return "redirect:";
     }

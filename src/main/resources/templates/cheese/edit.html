@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container bg">
-    <h1 th:text="'Edit Cheese ' + ${cheese.name} + '(id=' + ${cheese.ID} + ')'" class="display-4">Edit Cheese</h1>
+    <h1 th:text="'Edit Cheese ' + ${cheese.name} + '(id=' + ${id} + ')'" class="display-4">Edit Cheese</h1>
     <nav th:replace="fragments :: navigation"></nav>
     <form method="post" th:object="${cheese}" action="/cheese/edit">
         <div class="form-group">
@@ -29,7 +29,7 @@
             <input th:field="*{rating}" class="form-control"/>
             <span th:errors="*{rating}" class="error"></span>
         </div>
-        <input type="hidden" th:field="*{ID}" />
+        <input type="hidden" name="id" th:value="${id}" />
         <input type="submit" class="btn btn-primary" value="Edit Cheese"/>
     </form>
 
