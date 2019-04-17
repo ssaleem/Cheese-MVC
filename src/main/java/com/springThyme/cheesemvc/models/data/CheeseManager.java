@@ -1,7 +1,9 @@
 package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.Cheese;
+import com.springThyme.cheesemvc.models.CheeseType;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -43,6 +45,16 @@ public class CheeseManager {
         for(int id: IDs){
             removeCheese(id);
         }
+    }
+
+    public static Collection<Cheese> getByCategory(CheeseType type) {
+       Collection<Cheese> cheeses = new ArrayList<>();
+       for(Cheese cheese: getAll()){
+           if(cheese.getType().equals(type)) {
+               cheeses.add(cheese);
+           }
+       }
+       return cheeses;
     }
 
 }

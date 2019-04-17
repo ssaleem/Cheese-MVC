@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import javax.validation.Valid;
 
 
@@ -111,6 +112,23 @@ public class CheeseController {
         CheeseManager.update(id, theCheese);
 
         return "redirect:";
+    }
+
+    @RequestMapping(value = "search")
+    public String displaySearchForm(Model model){
+        model.addAttribute("cheeseTypes", CheeseType.values());
+        return "cheese/search";
+    }
+
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String processSearchForm(@RequestParam CheeseType type, Model model) {
+
+        model.addAttribute("cheeseTypes", CheeseType.values());
+        if(type == null){
+            return "cheese/search";
+        }
+        model.addAttribute("cheeses", CheeseManager.getByCategory(type));
+        return "cheese/search";
     }
 
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head"></head>
+<body class="container bg">
+    <h1>Search Cheese</h1>
+    <nav th:replace="fragments :: navigation"></nav>
+    <form method="post">
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select id="type" name="type" class="custom-select">
+                <option th:replace="cheese/add :: cheese-categories"></option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-dark" value="Search Cheese"/>
+    </form>
+
+    <div th:if="${cheeses} and ${cheeses.size()}">
+        <table th:replace="cheese/index :: cheese-table"></table>
+    </div>
+</body>
+</html>

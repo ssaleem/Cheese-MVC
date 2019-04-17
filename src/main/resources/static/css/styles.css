@@ -47,5 +47,7 @@ tr, td {
 background-color: white;
 }
 
-
+.table {
+    margin-top: 10px;
+}
 

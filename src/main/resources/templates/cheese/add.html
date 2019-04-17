@@ -20,7 +20,8 @@
             <select th:field="*{type}" class="custom-select">
                 <option th:each="cheeseType : ${cheeseTypes}"
                         th:text="${cheeseType.name}"
-                        th:value="${cheeseType}"></option>
+                        th:value="${cheeseType}"
+                        th:fragment="cheese-categories"></option>
             </select>
         </div>
         <div class="form-group">

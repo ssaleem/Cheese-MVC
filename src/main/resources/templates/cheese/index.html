@@ -5,7 +5,7 @@
     <h1 th:text="${title}" class="display-4">Default Title</h1>
     <nav th:replace="fragments :: navigation"></nav>
 
-    <table class="table">
+    <table class="table" th:fragment="cheese-table">
         <thead class="thead-dark">
         <tr>
             <th>Name</th>
