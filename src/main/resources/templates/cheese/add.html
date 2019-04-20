@@ -16,11 +16,11 @@
             <span th:errors="*{description}" class="error"></span>
         </div>
         <div class="form-group">
-            <label th:for="type">Type</label>
-            <select th:field="*{type}" class="custom-select">
-                <option th:each="cheeseType : ${cheeseTypes}"
-                        th:text="${cheeseType.name}"
-                        th:value="${cheeseType}"
+            <label th:for="cheeseType">Type</label>
+            <select th:field="*{cheeseType}" class="custom-select">
+                <option th:each="type : ${cheeseTypes}"
+                        th:text="${type.name}"
+                        th:value="${type}"
                         th:fragment="cheese-categories"></option>
             </select>
         </div>

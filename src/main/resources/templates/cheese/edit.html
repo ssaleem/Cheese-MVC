@@ -3,7 +3,7 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container bg">
-    <h1 th:text="'Edit Cheese ' + ${cheese.name} + '(id=' + ${id} + ')'" class="display-4">Edit Cheese</h1>
+    <h1 th:text="'Edit Cheese ' + ${cheese.name} + '(id=' + ${cheese.id} + ')'" class="display-4">Edit Cheese</h1>
     <nav th:replace="fragments :: navigation"></nav>
     <form method="post" th:object="${cheese}" action="/cheese/edit">
         <div class="form-group">
@@ -17,8 +17,8 @@
             <span th:errors="*{description}" class="error"></span>
         </div>
         <div class="form-group">
-            <label th:for="type">Type</label>
-            <select th:field="*{type}" class="custom-select">
+            <label th:for="cheeseType">Type</label>
+            <select th:field="*{cheeseType}" class="custom-select">
                 <option th:each="cheeseType : ${cheeseTypes}"
                         th:text="${cheeseType.name}"
                         th:value="${cheeseType}"></option>
@@ -29,7 +29,8 @@
             <input th:field="*{rating}" class="form-control"/>
             <span th:errors="*{rating}" class="error"></span>
         </div>
-        <input type="hidden" name="id" th:value="${id}" />
+<!--        <input type="hidden" name="id" th:value="${id}" />-->
+        <input type="hidden" th:field="*{id}" />
         <input type="submit" class="btn btn-primary" value="Edit Cheese"/>
     </form>
 

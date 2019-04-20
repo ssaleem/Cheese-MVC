@@ -10,7 +10,7 @@
         <select name="cheeseSelection">
             <option
                     th:each="cheese: ${cheeseList}"
-                    th:value="${cheese.ID}"
+                    th:value="${cheese.id}"
                     th:text="${cheese.name}"></option>
         </select>
     </label>

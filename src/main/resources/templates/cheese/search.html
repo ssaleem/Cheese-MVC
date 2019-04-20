@@ -6,8 +6,8 @@
     <nav th:replace="fragments :: navigation"></nav>
     <form method="post">
         <div class="form-group">
-            <label for="type">Type</label>
-            <select id="type" name="type" class="custom-select">
+            <label for="cheeseType">Type</label>
+            <select id="cheeseType" name="cheeseType" class="custom-select">
                 <option th:replace="cheese/add :: cheese-categories"></option>
             </select>
         </div>
