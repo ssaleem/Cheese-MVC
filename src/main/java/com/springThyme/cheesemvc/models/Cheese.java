@@ -1,9 +1,6 @@
 package com.springThyme.cheesemvc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -25,7 +22,8 @@ public class Cheese {
     @Size(min= 1, message = "Description must not be empty")
     private String description;
 
-    private CheeseType cheeseType;
+    @ManyToOne
+    private Category category;
 
     @NotNull
     @Min(value = 1, message = "Rating must be between 1 and 5")
@@ -65,12 +63,12 @@ public class Cheese {
         this.description = description;
     }
 
-    public CheeseType getCheeseType() {
-        return cheeseType;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCheeseType(CheeseType cheeseType) {
-        this.cheeseType = cheeseType;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getRating() {

@@ -1,7 +1,8 @@
 package com.springThyme.cheesemvc.controllers;
 
+import com.springThyme.cheesemvc.models.Category;
 import com.springThyme.cheesemvc.models.Cheese;
-import com.springThyme.cheesemvc.models.CheeseType;
+import com.springThyme.cheesemvc.models.data.CategoryDAO;
 import com.springThyme.cheesemvc.models.data.CheeseDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class CheeseController {
     @Autowired //instance is created by framework for us
     private CheeseDAO cheeseDAO;
 
+    @Autowired
+    private CategoryDAO categoryDAO;
+
     // Request path: /cheese
     @RequestMapping(value = "")
     public String index(Model model){
@@ -32,7 +36,7 @@ public class CheeseController {
 
 //        following line add an attribute with the key of `cheese' to the model
         model.addAttribute(new Cheese());
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("categories", categoryDAO.findAll());
         return "cheese/add";
     }
 
@@ -40,12 +44,16 @@ public class CheeseController {
     public String processAddCheeseForm(
             @ModelAttribute @Valid Cheese newCheese,
             Errors errors,
+            @RequestParam int categoryId,
             Model model){
+        Category category = categoryDAO.findOne(categoryId);
 
-        if(errors.hasErrors()){
-            model.addAttribute("cheeseTypes", CheeseType.values());
+        if(errors.hasErrors() || category == null){
+            model.addAttribute("categories", categoryDAO.findAll());
             return "cheese/add";
         }
+
+        newCheese.setCategory(category);
         cheeseDAO.save(newCheese);
 
         // Redirect to /cheese (Redirect is relative to the request mapping of controller)
@@ -92,7 +100,7 @@ public class CheeseController {
     public String displayEditForm(Model model, @PathVariable int cheeseId){
 
         model.addAttribute("cheese", cheeseDAO.findOne(cheeseId));
-        model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("categories", categoryDAO.findAll());
         return "cheese/edit";
     }
 
@@ -100,33 +108,50 @@ public class CheeseController {
     public String processEditForm(
             @ModelAttribute @Valid Cheese theCheese,
             Errors errors,
+            @RequestParam int categoryId,
             Model model){
 
-        if(errors.hasErrors()){
-            model.addAttribute("cheeseTypes", CheeseType.values());
+        Category category = categoryDAO.findOne(categoryId);
+
+        if(errors.hasErrors() || category == null){
+            model.addAttribute("categories", categoryDAO.findAll());
             return "cheese/edit";
         }
 
+        theCheese.setCategory(category);
         cheeseDAO.save(theCheese);
 
         return "redirect:";
     }
 
-    @RequestMapping(value = "search")
-    public String displaySearchForm(Model model){
-        model.addAttribute("cheeseTypes", CheeseType.values());
-        return "cheese/search";
-    }
+    @RequestMapping(value = "category/{categoryId}")
+    public String category(Model model,
+                           @PathVariable int categoryId) {
 
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String processSearchForm(@RequestParam CheeseType cheeseType, Model model) {
+        Category category = categoryDAO.findOne(categoryId);
 
-        model.addAttribute("cheeseTypes", CheeseType.values());
-        if(cheeseType == null){
-            return "cheese/search";
+        if(category != null) {
+            model.addAttribute("cheeses", categoryDAO.findOne(categoryId).getCheeses());
         }
-        model.addAttribute("cheeses", cheeseDAO.findByCheeseType(cheeseType));
-        return "cheese/search";
+
+        return "cheese/index";
     }
+
+//    @RequestMapping(value = "search")
+//    public String displaySearchForm(Model model){
+//        model.addAttribute("categories", categoryDAO.findAll());
+//        return "cheese/search";
+//    }
+//
+//    @RequestMapping(value = "search", method = RequestMethod.POST)
+//    public String processSearchForm(@RequestParam Category category, Model model) {
+//
+//        model.addAttribute("categories", categoryDAO.findAll());
+//        if(category == null){
+//            return "cheese/search";
+//        }
+//        model.addAttribute("cheeses", cheeseDAO.findByCheeseType(cheeseType));
+//        return "cheese/search";
+//    }
 
 }

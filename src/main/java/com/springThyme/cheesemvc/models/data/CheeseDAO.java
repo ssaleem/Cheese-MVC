@@ -1,7 +1,6 @@
 package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.Cheese;
-import com.springThyme.cheesemvc.models.CheeseType;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.core.support.DefaultCrudMethods;
 import org.springframework.stereotype.Repository;
@@ -16,7 +15,7 @@ public interface CheeseDAO extends CrudRepository<Cheese, Integer> {
 
 
 //    @Query("SELECT * FROM cheeses WHERE cheese.cheeseType=:cheeseType")
-    List<Cheese> findByCheeseType(CheeseType cheeseType);
+//    List<Cheese> findByCheeseType(CheeseType cheeseType);
 
 
 

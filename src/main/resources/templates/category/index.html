@@ -4,8 +4,10 @@
 <body>
     <h1>Cheese Categories</h1>
     <nav th:replace="fragments :: navigation"></nav>
-    <ul>
-        <li th:each="category : ${categories}" th:text="${category.name}"></li>
+    <ul class="list-group list">
+        <li th:each="category : ${categories}" class="list-group-item" >
+            <a th:href="@{'/cheese/category/'+ ${category.id}}" th:text="${category.name}"></a>
+        </li>
     </ul>
 </body>
 </html>

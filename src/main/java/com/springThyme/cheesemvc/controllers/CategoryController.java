@@ -2,7 +2,6 @@ package com.springThyme.cheesemvc.controllers;
 
 import com.springThyme.cheesemvc.models.Category;
 import com.springThyme.cheesemvc.models.data.CategoryDAO;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
