@@ -1,7 +1,8 @@
 package com.springThyme.cheesemvc.controllers;
 
 import com.springThyme.cheesemvc.models.User;
-import com.springThyme.cheesemvc.models.data.UserManager;
+import com.springThyme.cheesemvc.models.data.UserDAO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -16,9 +17,12 @@ import javax.validation.Valid;
 @RequestMapping(value = "user")
 public class UserController {
 
+    @Autowired
+    private UserDAO userDAO;
+
     @RequestMapping(value = "")
     public String index(Model model) {
-        model.addAttribute("users", UserManager.getAll());
+        model.addAttribute("users", userDAO.findAll());
         return "user/index";
     }
 
@@ -38,15 +42,15 @@ public class UserController {
             return "user/add";
         }
 
-        UserManager.addUser(user);
+        userDAO.save(user);
         return "redirect:";
     }
 
     @RequestMapping(value="{id}")
     public String getUser(
             Model model,
-            @PathVariable int id){
-        User user = UserManager.getByID(id);
+            @PathVariable long id){
+        User user = userDAO.findOne(id);
         model.addAttribute("name", user.getName());
         model.addAttribute("email", user.getEmail());
         model.addAttribute("joinDate", user.getJoinDate());
