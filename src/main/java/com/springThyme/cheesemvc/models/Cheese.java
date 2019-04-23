@@ -5,6 +5,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "cheeses")
@@ -29,6 +30,9 @@ public class Cheese {
     @Min(value = 1, message = "Rating must be between 1 and 5")
     @Max(value = 5, message = "Rating must be between 1 and 5")
     private int rating;
+
+    @ManyToMany(mappedBy = "cheeses")
+    private List<Menu> menus;
 
 //only no arg default constructor needed for hibernate and it is automatically created by Java
 //    public Cheese() {
@@ -77,5 +81,12 @@ public class Cheese {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @PreRemove
+    private void removeCheeseFromMenus(){
+        for(Menu menu: menus){
+            menu.removeItem(this);
+        }
     }
 }

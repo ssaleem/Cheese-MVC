@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+</head>
+<body class="container bg">
+    <h1 th:text="${title}"></h1>
+    <nav th:replace="fragments :: nav"></nav>
+
+    <ul class="list-group list">
+        <li th:each="menu : ${menus}" class="list-group-item">
+            <a th:href="@{'/menu/view/' + ${menu.id}}" th:text="${menu.name}"></a>
+        </li>
+    </ul>
+
+</body>
+</html>

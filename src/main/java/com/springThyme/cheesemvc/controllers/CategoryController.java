@@ -21,7 +21,7 @@ public class CategoryController {
     private CategoryDAO categoryDao;
 
     @GetMapping("")
-    public String getCategories(Model model){
+    public String index(Model model){
 
         model.addAttribute("title", "Categories");
         model.addAttribute("categories", categoryDao.findAll());

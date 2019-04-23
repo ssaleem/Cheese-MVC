@@ -71,7 +71,6 @@ public class CheeseController {
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     public String processRemoveCheeseForm(
             @RequestParam(required = false) int cheeseSelection){
-
         cheeseDAO.delete(cheeseSelection);
         return "redirect:";
     }
