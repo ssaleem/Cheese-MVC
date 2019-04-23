@@ -3,8 +3,10 @@
 <head th:replace="fragments :: head"></head>
 
 <body class="container bg">
-    <h1 class="display-4">Remove Cheese</h1>
+    <h1 th:replace="fragments :: title"></h1>
+
     <nav th:replace="fragments :: navigation"></nav>
+
     <form method="post">
     <label>Select cheese
         <select name="cheeseSelection">
@@ -14,7 +16,7 @@
                     th:text="${cheese.name}"></option>
         </select>
     </label>
-    <input type="submit" class="btn btn-primary" value="Remove Cheese"/>
+    <input type="submit" class="btn btn-dark" value="Remove Cheese"/>
     </form>
 
 </body>

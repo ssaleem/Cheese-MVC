@@ -1,14 +1,12 @@
 package com.springThyme.cheesemvc.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.Set;
 
 @Entity
+@Table(name = "menus")
 public class Menu {
 
     @Id
@@ -20,7 +18,7 @@ public class Menu {
     private String name;
 
     @ManyToMany
-    private List<Cheese> cheeses;
+    private Set<Cheese> cheeses;
 
     public Menu() {
     }
@@ -37,7 +35,7 @@ public class Menu {
         return name;
     }
 
-    public List<Cheese> getCheeses() {
+    public Set<Cheese> getCheeses() {
         return cheeses;
     }
 

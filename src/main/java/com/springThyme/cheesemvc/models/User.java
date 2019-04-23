@@ -6,12 +6,14 @@ import org.springframework.data.annotation.Transient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id

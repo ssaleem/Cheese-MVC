@@ -2,8 +2,11 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-    <h1>User Detail</h1>
+
+    <h1 th:replace="fragments :: title"></h1>
+
     <nav th:replace="fragments :: navigation"></nav>
+
     <div class="card user">
         <h4 th:text="${name}" class="card-title mb-2 text-muted"></h4>
         <p th:text="${email}"></p>

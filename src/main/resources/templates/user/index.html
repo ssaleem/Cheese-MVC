@@ -2,17 +2,19 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-<h1>Users</h1>
-<nav th:replace="fragments :: navigation"></nav>
 
-<ul class="list-group list">
-    <li
-            th:each="user: ${users}"
-            class="list-group-item"
-    >
-        <a th:text="${user.name}" th:href="@{'/user/' + ${user.ID}}"></a>
-    </li>
-</ul>
+    <h1 th:replace="fragments :: title"></h1>
+
+    <nav th:replace="fragments :: navigation"></nav>
+
+    <ul class="list-group list">
+        <li
+                th:each="user: ${users}"
+                class="list-group-item"
+        >
+            <a th:text="${user.name}" th:href="@{'/user/' + ${user.ID}}"></a>
+        </li>
+    </ul>
 
 </body>
 </html>

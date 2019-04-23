@@ -3,7 +3,8 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container bg">
-    <h1 th:text="${title}"></h1>
+    <h1 th:replace="fragments :: title"></h1>
+
     <nav th:replace="fragments :: navigation"></nav>
 
     <form method="post" th:object="${menu}">

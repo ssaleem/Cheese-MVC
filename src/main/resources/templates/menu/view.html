@@ -3,8 +3,8 @@
 <head th:replace="fragments :: head">
 </head>
 <body class="container bg">
+    <h1 th:text="'Menu: ' + ${menu.name} + ' with id: ' + ${menu.id}" class="display-4"></h1>
     <nav th:replace="fragments :: navigation"></nav>
-    <h1 th:text="'Menu: ' + ${menu.name} + ' with id: ' + ${menu.id}"></h1>
 
     <ul class="list-group list">
         <li th:each="cheese : ${menu.cheeses}" th:text="${cheese.name}"  class="list-group-item"></li>

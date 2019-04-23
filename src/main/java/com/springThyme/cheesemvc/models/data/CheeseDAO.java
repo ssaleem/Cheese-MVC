@@ -2,11 +2,9 @@ package com.springThyme.cheesemvc.models.data;
 
 import com.springThyme.cheesemvc.models.Cheese;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.core.support.DefaultCrudMethods;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Repository
 @Transactional

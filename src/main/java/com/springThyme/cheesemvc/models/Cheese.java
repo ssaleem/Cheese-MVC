@@ -35,8 +35,6 @@ public class Cheese {
     private List<Menu> menus;
 
 //only no arg default constructor needed for hibernate and it is automatically created by Java
-//    public Cheese() {
-//    }
 
     @Override
     public String toString() {
